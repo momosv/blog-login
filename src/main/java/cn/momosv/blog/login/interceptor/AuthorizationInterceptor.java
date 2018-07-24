@@ -2,7 +2,7 @@ package cn.momosv.blog.login.interceptor;
 
 import cn.momosv.blog.base.interfaces.AuthIgnore;
 import cn.momosv.blog.base.redis.util.RedisUtils;
-import cn.momosv.blog.common.exception.MyException;
+import cn.momosv.blog.base.mybatis.exception.MyException;
 import cn.momosv.blog.common.util.Constants;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;

@@ -2,10 +2,11 @@ package cn.momosv.blog.login.controller;
 
 
 
-import cn.momosv.blog.common.model.base.Msg;
+import cn.momosv.blog.base.interfaces.AuthIgnore;
+import cn.momosv.blog.base.mybatis.model.base.Msg;
 import cn.momosv.blog.common.util.Constants;
 import cn.momosv.blog.login.baseController.BaseController;
-import cn.momosv.blog.login.interfaces.AuthIgnore;
+
 import cn.momosv.blog.login.model.UserInfoPO;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
