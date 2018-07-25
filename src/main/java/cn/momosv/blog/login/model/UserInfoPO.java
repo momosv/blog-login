@@ -1,8 +1,9 @@
 package cn.momosv.blog.login.model;
 
 import java.io.Serializable;
+import java.security.Principal;
 
-public class UserInfoPO implements Serializable {
+public class UserInfoPO  implements Serializable  {
     private String id;
     private String userName;
     private String passwd;
@@ -30,4 +31,6 @@ public class UserInfoPO implements Serializable {
     public void setPasswd(String passwd) {
         this.passwd = passwd;
     }
+
+
 }

@@ -17,9 +17,18 @@ import javax.servlet.http.HttpServletResponse;
 @Component("authorizationInterceptor")
 public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 
+     final static String[] ALLOW_PATH={"/webjars"};
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         System.out.println("接收到请求:"+request.getServletPath());
+        for (String s : ALLOW_PATH) {
+            if(request.getServletPath().contains(s)){
+            System.out.println("不需拦截:"+request.getServletPath());
+                return true;
+            }
+        }
+
         AuthIgnore annotation;
         if(handler instanceof HandlerMethod) {
             annotation = ((HandlerMethod) handler).getMethodAnnotation(AuthIgnore.class);
@@ -38,7 +47,7 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
             token = request.getParameter(Constants.USER_TOKEN);
         }
         if(StringUtils.isEmpty(token)){
-            Object obj = request.getAttribute(Constants.USER_TOKEN);
+            Object obj = request.getSession().getAttribute(Constants.USER_TOKEN);
             if(null!=obj){
                 token=obj.toString();
             }
@@ -51,8 +60,7 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
         if(!RedisUtils.hasKey(token)){
             throw new MyException("登录已经过期");
         }
-        RedisUtils.expire(token,60*30);
-        request.setAttribute(Constants.USER_TOKEN,token);
+       // RedisUtils.expire(token,60*30);
 
         return true;
     }

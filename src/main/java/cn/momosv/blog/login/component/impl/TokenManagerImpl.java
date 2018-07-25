@@ -20,7 +20,6 @@ public class TokenManagerImpl implements TokenManager {
         //使用uuid作为源token
         String token = UUID.randomUUID().toString().replace("-", "");
         RedisUtils.set(token,userInfo,30,TimeUnit.MINUTES);
-
         return token;
     }
 
@@ -30,7 +29,7 @@ public class TokenManagerImpl implements TokenManager {
      */
     public void refreshUserToken(String token){
         if(RedisUtils.hasKey(token)){
-            RedisUtils.expire(token,60*30);
+            RedisUtils.expire(token,60*60);
         }
     }
 

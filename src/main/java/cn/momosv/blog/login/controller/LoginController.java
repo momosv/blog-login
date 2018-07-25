@@ -21,9 +21,9 @@ public class LoginController extends BaseController {
 
     @AuthIgnore
     @RequestMapping("/login")
-    public Object login(UserInfoPO user, HttpServletRequest servletRequest){
+    public Object login(UserInfoPO user,String id, HttpServletRequest servletRequest){
         String token = authManager.signIn(user);
-        servletRequest.setAttribute(Constants.USER_TOKEN,token);
+        servletRequest.getSession().setAttribute(Constants.USER_TOKEN,token);
         return Msg.success("success").add(Constants.USER_TOKEN,token);
     }
 

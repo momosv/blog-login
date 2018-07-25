@@ -12,7 +12,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.security.auth.message.AuthException;
 import javax.servlet.http.HttpServletRequest;
 
-@Component
+@Component("authManager")
 public class AuthManager {
 
     @Autowired
@@ -46,6 +46,7 @@ public class AuthManager {
         if(userInfo==null){
             throw new AuthException("该用户已过期"+"|"+ HttpStatus.UNAUTHORIZED.value());
         }
+        refreshUserInfo();
         return userInfo;
     }
 

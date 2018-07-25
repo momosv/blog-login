@@ -5,6 +5,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
 
@@ -13,8 +16,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(authorizationInterceptor).addPathPatterns("/**");
+        registry.addInterceptor(authorizationInterceptor).addPathPatterns("/**")
+        .excludePathPatterns(Arrays.asList("/**.js,/**.css"));
     }
-
 
 }
