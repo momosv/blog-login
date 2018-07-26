@@ -31,7 +31,14 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 
         AuthIgnore annotation;
         if(handler instanceof HandlerMethod) {
+
+        }
+        if(handler instanceof HandlerMethod) {
             annotation = ((HandlerMethod) handler).getMethodAnnotation(AuthIgnore.class);
+            if(null == annotation){
+               Class clazz = ((HandlerMethod) handler).getMethod().getDeclaringClass();
+                annotation =  ((HandlerMethod) handler).getMethod().getDeclaringClass().getAnnotation(AuthIgnore.class);
+            }
         }else{
             return true;
         }

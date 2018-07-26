@@ -14,12 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.security.auth.message.AuthException;
 import javax.servlet.http.HttpServletRequest;
 
+@AuthIgnore
 @RestController
 public class LoginController extends BaseController {
 
 
-
-    @AuthIgnore
     @RequestMapping("/login")
     public Object login(UserInfoPO user,String id, HttpServletRequest servletRequest){
         String token = authManager.signIn(user);
